@@ -19,6 +19,7 @@ export class ReminderEditor {
     this.input=this.root.querySelector(`#time-${id}`);this.date=this.root.querySelector(`#date-${id}`);
     this.panel=this.root.querySelector(`#wheel-${id}`);this.openButton=this.root.querySelector('.wheel-open');
     this.columns=[...this.root.querySelectorAll('.wheel-column')];this.parts=[0,0];this.timers=[];
+    this.rowHeight=parseFloat(getComputedStyle(this.root).getPropertyValue('--wheel-row-height')) || 48;
     this.input.addEventListener('input',()=>{this.onChange({time:this.input.value});this.syncWheel(this.input.value);});
     this.date.addEventListener('input',()=>this.onChange({date:this.date.value}));
     this.root.addEventListener('click',event=>{
@@ -45,7 +46,7 @@ export class ReminderEditor {
       column.addEventListener('scroll',()=>{
         clearTimeout(this.timers[part]);this.timers[part]=setTimeout(()=>{
           if(this.panel.hidden)return;
-          const index=Math.max(0,Math.min(part===0?23:59,Math.round(column.scrollTop/40)));
+          const index=Math.max(0,Math.min(part===0?23:59,Math.round(column.scrollTop/this.rowHeight)));
           if(index!==this.parts[part])this.choose(part,index,false);
         },140);
       },{passive:true});
@@ -61,7 +62,7 @@ export class ReminderEditor {
   choose(part,value,scroll=true) {
     this.parts[part]=value;
     const time=this.parts.map(pad).join(':');this.input.value=time;
-    this.markOptions();if(scroll)this.columns[part].scrollTo({top:value*40,behavior:'instant'});
+    this.markOptions();if(scroll)this.columns[part].scrollTo({top:value*this.rowHeight,behavior:'instant'});
     this.onChange({time});
   }
   markOptions() {
@@ -74,7 +75,7 @@ export class ReminderEditor {
   syncWheel(time) {
     if(this.panel.hidden||!validTime(time))return;
     this.parts=time.split(':').map(Number);this.markOptions();
-    this.columns.forEach((column,part)=>{clearTimeout(this.timers[part]);column.scrollTo({top:this.parts[part]*40,behavior:'instant'});});
+    this.columns.forEach((column,part)=>{clearTimeout(this.timers[part]);column.scrollTo({top:this.parts[part]*this.rowHeight,behavior:'instant'});});
   }
   sync(scene,error,now=Date.now()) {
     if(document.activeElement!==this.input)this.input.value=scene.time;
