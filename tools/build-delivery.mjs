@@ -1,0 +1,11 @@
+import {copyFile,mkdir} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const source=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const target=path.dirname(source);
+const files=['index.html','styles.css','app.mjs','scheduler.mjs','player.mjs','reminder-editor.mjs','server.mjs','启动网页.cmd'];
+const assets=['morning.png','afternoon.png','night.png','morning.wav','nap.wav','night.wav','silence.wav','favicon.svg'];
+await mkdir(path.join(target,'assets'),{recursive:true});
+for(const name of files)await copyFile(path.join(source,name),path.join(target,name));
+for(const name of assets)await copyFile(path.join(source,'assets',name),path.join(target,'assets',name));
+console.log(`Day Rhythm delivery: ${files.length+assets.length} runtime files copied from source.`);

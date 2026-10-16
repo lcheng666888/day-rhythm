@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3eb"><meta name="description" content="用三张唱片，陪你起床、午睡和入夜。原创铃声与简单的日常提醒。">
+  <title>Day Rhythm · 日常有声</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <svg class="icon-defs" aria-hidden="true"><defs>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M19 4C8 2 3 9 6 15s15 3 13-11Z M5 20 15 9"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="m11 5-5 4H3v6h3l5 4ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
+  </defs></svg>
+  <div class="page-shell">
+    <header class="site-header">
+      <a href="./" class="brand" aria-label="Day Rhythm 首页"><span class="brand-record"><i></i></span><span>day rhythm<span class="brand-cn">日常有声</span></span></a>
+      <nav aria-label="页面选项"><button class="plain-button" id="guide-open"><svg class="icon"><use href="#i-info"/></svg><span>使用指南</span></button><span class="header-divider"></span><span class="edition">VOL. 01 / EVERYDAY</span></nav>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy"><p class="eyebrow"><span></span> A LITTLE RHYTHM, EVERY DAY</p><h1 id="page-title">好好醒来，<span>慢慢入睡。</span></h1><p class="intro-description">把一天的节奏，交给三张唱片。<br class="mobile-break">从第一缕晨光，到最后一声晚安。</p></div>
+        <div class="clock-block"><p id="today-date">今天</p><div id="live-clock">00<span>:</span>00<span>:</span><small>00</small></div><span class="clock-caption"><i></i> 此刻，刚刚好</span></div>
+      </section>
+      <section class="sound-banner" aria-label="声音权限"><div><span class="status-dot" id="sound-dot"></span><div><strong id="sound-title">让今天，有声一点</strong><p id="sound-description">首次使用或刷新后，点击启用声音，让提醒准时被听见。</p></div></div><button id="enable-sound" class="dark-button"><svg class="icon"><use href="#i-volume"/></svg><span>启用提醒声音</span></button></section>
+      <section class="collection-heading"><div><span class="section-number">01 — 03</span><h2>一天的三面</h2><span class="collection-en">YOUR DAILY COLLECTION</span></div><span class="local-note"><svg class="icon"><use href="#i-check"/></svg> 设置仅保存在此浏览器</span></section>
+      <div class="scene-grid" id="scene-grid"></div>
+      <section class="next-strip" aria-labelledby="next-title"><span class="next-icon"><svg class="icon"><use href="#i-clock"/></svg></span><div class="next-copy"><span id="next-title">下一次提醒</span><strong id="next-reminder">为今天，设一个小小的期待</strong></div><div class="next-count"><span>距离下一段节奏</span><strong id="next-countdown">— — : — — : — —</strong></div></section>
+      <section class="preferences" aria-label="偏好设置"><div><label class="checkbox-label"><input id="reduced-motion" type="checkbox"><span>减少动态效果</span></label><span class="subtle desktop-only">也会遵循你的系统设置</span></div><button id="save-settings" class="save-button"><svg class="icon"><use href="#i-check"/></svg>保存设置</button><span id="save-state" role="status">设置会自动保存</span></section>
+      <section class="gentle-note"><svg class="icon"><use href="#i-info"/></svg><p>让这个页面陪着你。请保持页面打开、设备唤醒；后台或锁屏可能延迟提醒。<button class="text-button" id="limits-open">了解提醒边界 <span>↗</span></button></p></section>
+    </main>
+    <footer><span class="footer-brand">day rhythm <i>®</i></span><p>生活不必赶拍，找到自己的节奏。</p><span>MADE FOR YOUR EVERYDAY.</span></footer>
+  </div>
+  <div class="player-bar" id="player-bar" hidden role="region" aria-label="正在播放"><div class="playing-indicator" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><strong id="player-title"></strong><span id="player-description"></span></div><button id="resume-alert" class="light-button" hidden>播放提醒</button><button id="stop-all" class="dark-button"><svg class="icon"><use href="#i-stop"/></svg><span>停止</span></button></div>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <dialog id="guide"><div class="dialog-heading"><span class="eyebrow">A SMALL USER GUIDE</span><button class="close-button" id="guide-close" aria-label="关闭使用指南">×</button></div><h2>让日常，按自己的拍子来。</h2><div class="guide-items"><p><strong>01 / 晨间与睡前</strong>选择具体日期和时间，再选仅这一次或每天重复。可滑动滚轮，也可输入 HH:MM；无效设置会提示并暂停安排，修改后自动保存。</p><p><strong>02 / 午后小憩</strong>选择时长，再点击开始午睡。可暂停、继续或重置；刷新后会接着计时。</p><p><strong>03 / 听见提醒</strong>先启用声音，也可点击试听。每次仅播放一张唱片；按 Esc 或停止即可结束。</p></div><div class="boundary"><h3>关于后台与锁屏</h3><p>普通网页无法保证后台、锁屏、休眠或关闭页面后响铃。浏览器可能冻结计时或阻止声音。重要起床安排请同时设置系统闹钟。</p><p>恢复页面时，5 分钟以内的延迟提醒会补发；更早的提醒记为错过。刷新后需重新启用声音。相同浏览器打开多个页面时，仅一个页面负责响铃。</p><label class="checkbox-label"><input type="checkbox" id="keep-awake"><span>页面可见时保持屏幕常亮</span></label><p id="wake-status" class="subtle">由浏览器支持情况决定，不保证锁屏提醒。</p></div><button class="outline-button" id="test-reminder"><svg class="icon"><use href="#i-clock"/></svg>10 秒体验一次午睡提醒</button><details><summary>最近提醒记录</summary><ul id="history-list"></ul></details></dialog>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  <audio id="audio" preload="auto" playsinline></audio>
+  <noscript><p>请启用 JavaScript 以使用提醒和播放器。</p></noscript>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Preserve exact delivery bytes in the fixed source commit and ZIP archive.
+* -text
+*.png binary
+*.wav binary

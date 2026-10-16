@@ -1,0 +1,41 @@
+✔ tonight can schedule tomorrow morning exactly, then fire once (3.3191ms)
+✔ today in the past is rejected, without a silent move to tomorrow (0.3482ms)
+✔ daily repetition rolls forward explicitly and respects its starting date (0.2599ms)
+✔ crossing midnight, month end and year end uses local calendar dates (0.3144ms)
+✔ full date text has an accurate relative date, year, weekday and 24-hour time (0.3299ms)
+✔ editing date and time replaces the previous occurrence, not just the label (0.3414ms)
+✔ refresh retains a single date far in the future and the exact due timestamp (0.5294ms)
+✔ a just-overdue single reminder survives refresh, is consumed and retains its queued alert (0.5489ms)
+✔ invalid or incomplete fields are saved as drafts but never scheduled, including after reload (0.8707ms)
+✔ nap end date and time crosses year end and is the same occurrence that triggers (0.37ms)
+✔ a single reminder missed for hours completes without ringing on another day (0.249ms)
+✔ editing to an incomplete time disarms the old occurrence immediately (0.1597ms)
+✔ old saved daily settings migrate without changing their next occurrence (0.1805ms)
+✔ rapid switching ignores stale play completion and keeps one active scene (1.5998ms)
+✔ stop while play is pending cannot revive animation (0.3553ms)
+✔ autoplay rejection produces blocked state, not a playing animation (0.2648ms)
+✔ volume is live, previews finish, alerts stop at a bounded duration (1.3641ms)
+✔ daily time rolls to tomorrow after the selected time (2.8378ms)
+✔ alarm is consumed once, including across reload (2.0155ms)
+✔ nap stores an absolute deadline; refresh cannot restart it (0.6756ms)
+✔ background delay within 5 minutes catches up exactly once (0.4141ms)
+✔ stale alarms are marked missed, not sounded hours later (0.5189ms)
+✔ same-time reminders are both collected in deterministic order (1.5467ms)
+✔ pause/resume preserves remaining nap time (0.674ms)
+✔ corrupted storage is bounded and defaults are safe (0.5873ms)
+✔ disabled reminders do not fire and dates use local calendar (0.6179ms)
+✔ daily reminder fires again the next day, and can be rescheduled (1.5403ms)
+✔ midnight and month changes follow the local calendar (1.0034ms)
+✔ pending reminders survive a short reload but stale pending is dropped (1.1922ms)
+✔ an unrelated occupied port falls back and serves Day Rhythm (175.4731ms)
+✔ a repeated launch reuses the existing project and exits cleanly (239.6192ms)
+✔ a running first-version server is also reused without a health endpoint (134.3259ms)
+✔ an invalid port produces a readable error without a Node stack trace (103.9597ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 806.2721
